@@ -11,9 +11,13 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-@app.get("/")
-def read_root():
-    return {"message": "API del bot funcionando"}
+@app.get("/ping")
+async def read_root():
+    return {"message": "pong"}
+
+@app.head("/ping")
+async def read_root():
+    return {"Te odio": "pong"}
 
 
 @app.get("/confesiones")

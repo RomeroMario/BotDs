@@ -71,7 +71,7 @@
 
     async function cargarConfesiones() {
     try {
-      const resp = await fetch("http://127.0.0.1:8000/confesiones");
+      const resp = await fetch("https://1e1dd9a0-5ecf-4e1e-b7b3-73854f52bfc6-00-3kvstuh3o3g2i.riker.replit.dev/confesiones");
       if (!resp.ok) throw new Error("No se pudo obtener confesiones");
       const data = await resp.json();
       // Cada elemento es una línea, igual que antes

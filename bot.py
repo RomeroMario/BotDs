@@ -14,6 +14,7 @@ async def on_ready():
 
 @bot.slash_command(name="ping", description="Verifica si el bot está activo")
 async def ping(ctx: discord.ApplicationContext):
+    print("ping")
     await ctx.send_response("Pong!")
     
 @bot.slash_command(name="confesion")
