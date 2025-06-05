@@ -1,0 +1,2 @@
+TOKEN = 'NDY1NTkwNjY2MjYxNjkyNDUx.G41WC-.6M8tf2qPYC1_hou08Uwyz8CuXIg3k4UwGkkxhI'
+cola = "<a:tailuwu:1213553068507930624>"
