@@ -1,8 +1,8 @@
 import os
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
-TOKEN = os.getenv("TOKENBOT")
-URL=os.getenv("URL")
-PORT=os.getenv("PORT")
+TOKEN = os.environ.get("TOKENBOT")
+URL=os.os.environ.get("URL")
+PORT=os.os.environ.get("PORT")
 cola = "<a:tailuwu:1213553068507930624>"
