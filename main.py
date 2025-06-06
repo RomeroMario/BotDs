@@ -4,7 +4,7 @@ from uvicorn.config import LOGGING_CONFIG as DEFAULT_UVICORN_LOGGING
 from api import app
 from bot import bot
 from variables import TOKEN,URL,PORT
-import logging
+import os
 
 def custom_log_config():
     log_config = DEFAULT_UVICORN_LOGGING.copy()
@@ -23,7 +23,7 @@ async def run_fastapi():
     config = uvicorn.Config(
         app=app, 
         host=URL, 
-        port=int(PORT), 
+        port=int(PORT) if os.environ.get("PORT") else 4000, 
         log_level="info" , 
         log_config=custom_log_config() 
         )
