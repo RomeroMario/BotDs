@@ -23,7 +23,7 @@ async def run_fastapi():
     config = uvicorn.Config(
         app=app, 
         host=URL, 
-        port=int(PORT) if os.environ.get("PORT") else 4000, 
+        port=int(os.environ.get("PORT", PORT)) if os.environ.get("PORT") or PORT else 4000, 
         log_level="info" , 
         log_config=custom_log_config() 
         )
