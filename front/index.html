@@ -71,7 +71,7 @@
 
     async function cargarConfesiones() {
     try {
-      const resp = await fetch("https://1e1dd9a0-5ecf-4e1e-b7b3-73854f52bfc6-00-3kvstuh3o3g2i.riker.replit.dev/confesiones");
+      const resp = await fetch("https://botds-glef.onrender.com/confesiones");
       if (!resp.ok) throw new Error("No se pudo obtener confesiones");
       const data = await resp.json();
       // Cada elemento es una línea, igual que antes
@@ -129,6 +129,22 @@
       confesiónActual = null;
     }
 
+    async function guardarLeido(confesionId) {
+      try {
+        const resp = await fetch("https://botds-glef.onrender.com/lectura", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: confesionId }),
+        });
+        if (!resp.ok) throw new Error("No se pudo marcar como leído");
+      }
+      catch (e) {
+        console.error("Error guardando leido:", e);
+      }   
+    }
+
     window.addEventListener("DOMContentLoaded", cargarConfesiones);
     document.getElementById("modalBoton").addEventListener("click", () => {
       if (confesiónActual !== null) {
@@ -136,6 +152,7 @@
           confesiones[confesiónActual].leido = false;}else{
             confesiones[confesiónActual].leido = true;
           };
+        marcarLeido(confesiónActual);
         mostrarConfesiones();
         cerrarModal();
       }

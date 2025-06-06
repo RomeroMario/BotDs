@@ -32,6 +32,24 @@ async def get_confesiones():
     except FileNotFoundError:
         return []
 
+@app.post("/lectura")
+async def lectura(id: int):
+    try:
+        with open("confesiones.txt", "r", encoding="utf-8") as f:
+            lineas = f.readlines()
+            if lineas:
+                for i, linea in enumerate(lineas):
+                    if int(linea.split("&")[0]) == id:
+                        lineas[i] = linea.replace("False", "True")
+                        break
+                with open("confesiones.txt", "w", encoding="utf-8") as f:
+                    f.writelines(lineas)
+                return {"message": "Confesión marcada como leída"}
+            else:
+                return {"message": "No se encontraron confesiones"}
+    except FileNotFoundError:
+        return {"message": "No se encontraron confesiones"}
+
 
 
 async def save_confess( confesion: str):

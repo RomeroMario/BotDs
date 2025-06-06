@@ -17,9 +17,13 @@ async def ping(ctx: discord.ApplicationContext):
     print("ping")
     await ctx.send_response("Pong!")
     
-@bot.slash_command(name="confesion")
+@bot.slash_command(name="confesion", description="Usa el comando y LUEGO escribí la confesión")
 async def confesion(ctx: discord.ApplicationContext):
     await ctx.interaction.response.send_modal(ConfessModal())
+    
+@bot.slash_command(name="Selección Random",description="Escribe opcione para sortear")
+async def sorteo(ctx: discord.ApplicationContext,opcion1: str,opcion2: str):
+    await ctx.send_response(f"Comando en construcción :D")
     
 @bot.slash_command(name="mago",description="Pasa algo mágico")
 async def mago(ctx: discord.ApplicationContext):
