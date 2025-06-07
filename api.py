@@ -23,7 +23,7 @@ async def read_root():
 @app.get("/confesiones")
 async def get_confesiones():
     try:
-        with open("confesiones.txt", "r", encoding="utf-8") as f:
+        with open("/etc/secrets/confesiones.txt", "r", encoding="utf-8") as f:
             lineas = f.readlines()
             if lineas:
                 return lineas
@@ -35,7 +35,7 @@ async def get_confesiones():
 @app.post("/lectura")
 async def lectura(id: int):
     try:
-        with open("etc/secrets/confesiones.txt", "r", encoding="utf-8") as f:
+        with open("/etc/secrets/confesiones.txt", "r", encoding="utf-8") as f:
             lineas = f.readlines()
             if lineas:
                 for i, linea in enumerate(lineas):
@@ -55,7 +55,7 @@ async def lectura(id: int):
 async def save_confess( confesion: str):
     
     try:
-        with open("etc/secrets/confesiones.txt", "r", encoding="utf-8") as f:
+        with open("/etc/secrets/confesiones.txt", "r", encoding="utf-8") as f:
             lineas = f.readlines()
             if lineas:
                 ultima_linea = lineas[-1]
@@ -72,7 +72,7 @@ async def save_confess( confesion: str):
     nueva_linea = f"{nuevo_id}&{cuerpo}&{fecha_actual}&{leido}\n"
 
     # Escribir la nueva línea
-    with open("etc/secrets/confesiones.txt", "a", encoding="utf-8") as f:
+    with open("/etc/secrets/confesiones.txt", "a", encoding="utf-8") as f:
         f.write(nueva_linea)
     print("Confesión guardada")
     
