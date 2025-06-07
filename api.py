@@ -72,6 +72,7 @@ async def save_confess( confesion: str):
     nueva_linea = f"{nuevo_id}&{cuerpo}&{fecha_actual}&{leido}\n"
 
     # Escribir la nueva línea
-    with open("confesiones.txt", "a", encoding="utf-8") as f:
+    with open("etc/secretsconfesiones.txt", "a", encoding="utf-8") as f:
         f.write(nueva_linea)
+    print("Confesión guardada")
     
