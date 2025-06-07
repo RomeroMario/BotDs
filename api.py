@@ -1,12 +1,13 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from datetime import datetime
+from db import guardarConfesión
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # O especifica ["http://127.0.0.1:5500"]
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -53,26 +54,6 @@ async def lectura(id: int):
 
 
 async def save_confess( confesion: str):
-    
-    try:
-        with open("/etc/secrets/confesiones.txt", "r", encoding="utf-8") as f:
-            lineas = f.readlines()
-            if lineas:
-                ultima_linea = lineas[-1]
-                ultimo_id = int(ultima_linea.split("&")[0])
-            else:
-                ultimo_id = 0
-    except FileNotFoundError:
-        ultimo_id = 0
-
-    nuevo_id = ultimo_id + 1
     fecha_actual = datetime.now().strftime("%Y-%m-%d")
-    leido = "False"
-    cuerpo = confesion.replace("\n", "\\n")
-    nueva_linea = f"{nuevo_id}&{cuerpo}&{fecha_actual}&{leido}\n"
-
-    # Escribir la nueva línea
-    with open("/etc/secrets/confesiones.txt", "a", encoding="utf-8") as f:
-        f.write(nueva_linea)
-    print("Confesión guardada")
+    guardarConfesión(confesion, fecha_actual, "False")
     
