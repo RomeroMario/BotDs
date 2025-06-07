@@ -45,13 +45,12 @@ class SorteoModal(discord.ui.Modal):
         ganador = random.choice(participantes)
         lista = "\n".join(f"- {p}" for p in participantes)
         await interaction.response.send_message(f"🎲 **Participantes:**\n{lista}", ephemeral=False)
-        await interaction.followup.send(f"🏆 **Ganador:** {ganador}", ephemeral=False)
         msg = await interaction.followup.send("🎰 Girando la ruleta...", ephemeral=False)
         
         for _ in range(30):
             seleccionado = random.choice(participantes)
             await msg.edit(content=f"🎰 Girando la ruleta...\n> {seleccionado}")
-            await asyncio.sleep(0.25)
+            await asyncio.sleep(0.2)
 
         ganador = random.choice(participantes)
         await msg.edit(content=f"🏆 **¡Ganador/a!**\n> {ganador}")
