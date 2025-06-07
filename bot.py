@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from modals import ConfessModal
+from modals import ConfessModal,SorteoModal
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -21,9 +21,9 @@ async def ping(ctx: discord.ApplicationContext):
 async def confesion(ctx: discord.ApplicationContext):
     await ctx.interaction.response.send_modal(ConfessModal())
     
-@bot.slash_command(name="sorteo", description="Escribe opcione para sortear")
-async def sorteo(ctx: discord.ApplicationContext,tipo: str):
-    await ctx.send_response(f"Comando en construcción :D")
+@bot.slash_command(name="sorteo", description="Escribe opciones para sortear")
+async def sorteo(ctx: discord.ApplicationContext):
+    await ctx.interaction.response.send_modal(SorteoModal())
     
 @bot.slash_command(name="mago",description="Pasa algo mágico")
 async def mago(ctx: discord.ApplicationContext):
