@@ -3,6 +3,11 @@ from supabase import create_client, Client
 
 supabase: Client = create_client(SB_URL, SB_KEY)
 
+
+def obtenerConfesiones():
+    data = supabase.table("confesion").select("*").execute()
+    return data.data
+
 def guardarConfesión(cuerpo: str, fecha: str, leido: bool):
     nuevo = {"cuerpo": cuerpo, "fecha": fecha, "estado": leido}
     supabase.table("confesion").insert(nuevo).execute()
