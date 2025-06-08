@@ -1,5 +1,5 @@
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from datetime import datetime
 from db import guardarConfesión, modificarEstado,obtenerConfesiones
 
@@ -26,8 +26,10 @@ async def get_confesiones():
     return obtenerConfesiones()
 
 @app.post("/lectura")
-async def lectura(id: str):
-    modificarEstado(int(id))
+async def lectura(request: Request):
+    id_str = await request.body()
+    id = int(id_str.decode())
+    modificarEstado(id)
 
 
 

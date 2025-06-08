@@ -5,7 +5,7 @@ supabase: Client = create_client(SB_URL, SB_KEY)
 
 
 def obtenerConfesiones():
-    data = supabase.table("confesion").select("*").execute()
+    data = supabase.table("confesion").select("*").order("id", desc=False).execute()
     return data.data
 
 def guardarConfesión(cuerpo: str, fecha: str, leido: bool):
