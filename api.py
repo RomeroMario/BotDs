@@ -26,8 +26,8 @@ async def get_confesiones():
     return obtenerConfesiones()
 
 @app.post("/lectura")
-async def lectura(id: int):
-    modificarEstado(id)
+async def lectura(id: str):
+    modificarEstado(int(id))
 
 
 
