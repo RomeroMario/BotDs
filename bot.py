@@ -11,6 +11,13 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.event
 async def on_ready():
     print(f"🤖 Bot conectado como {bot.user}. Preparado")
+    
+@bot.event
+async def on_message(message):
+    canal_objetivo = 1380371553887191040  # Reemplaza con el ID de tu canal
+    if message.channel.id == canal_objetivo and not message.author.bot:
+        await message.delete()
+    await bot.process_commands(message)
 
 @bot.slash_command(name="ping", description="Verifica si el bot está activo")
 async def ping(ctx: discord.ApplicationContext):
